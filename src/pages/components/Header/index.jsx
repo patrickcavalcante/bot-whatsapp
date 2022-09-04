@@ -33,8 +33,6 @@ const Header = props => {
     data[chave] = valor.capitalize();
     });
 
-    console.log(data)
-
     if(data.idOp) {
       updateIdOp(+data.idOp)
     }
@@ -48,8 +46,6 @@ const Header = props => {
     }
 
   }, [updateIdOp, updateNameOperator, updateAds]);
-
-  console.log(props)
 
   const logoOperadora = `https://app.leadmark.com.br/themes/now/img/operadoras/${props.store.idOp}.png`
 

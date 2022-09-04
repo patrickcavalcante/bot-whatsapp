@@ -1,7 +1,9 @@
 import {
   IDOP_CHANGED,
   OPERATOR_NAME_CHANGED,
-  ADS_CHANGED
+  ADS_CHANGED,
+  NAME_CHANGED,
+  STEP_CHANGED
 } from '../types'
 
 const initialState = {
@@ -41,6 +43,16 @@ export default function chatReducer (state = initialState, action) {
       ...state,
       ads: action.payload
       }
+    case NAME_CHANGED: 
+      return {
+      ...state,
+      nome: action.payload
+    }
+    case STEP_CHANGED: 
+      return {
+      ...state,
+      step: action.payload
+    }
     default: 
       return state
   }
