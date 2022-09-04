@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const BgFooter = styled.div`
-  background-color: #f6f6f6;
+  background-color: transparent;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -11,16 +11,18 @@ export const BgFooter = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 8vh;
-  padding:1rem 0;
 `
 
 export const GridContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 8vh;
+  padding:0rem 1.3em;
+  background-color: #f6f6f6;
 `
 
 export const IconPlus = styled.img`

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const BgHeader = styled.div`
-  background-color: #f6f6f6;
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,7 +19,8 @@ export const Content = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 8vh;
-  padding:0rem 1rem;
+  padding:0rem 1.3em;
+  background-color: #f6f6f6;
 `
 
 export const GridContent = styled.div`

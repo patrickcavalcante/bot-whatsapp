@@ -19,8 +19,8 @@ export const MainContent = styled.div`
     align-items: center;
     background: #efe7dd url('/assets/img/bg.jpg') repeat;
     z-index: 0;
-    min-height: 85vh;
-    max-height: 85vh;
+    min-height: 86vh;
+    max-height: 86vh;
     padding: 1rem 0;
     width: 450px;
     margin-left: auto;

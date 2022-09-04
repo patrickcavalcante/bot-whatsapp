@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { changeIdOp, changeOperatorName, changeAds } from '../../../store/actions/chatAction'
+import Head from 'next/head'
 
 import {
   BgHeader,
@@ -54,6 +55,9 @@ const Header = props => {
 
   return (
     <BgHeader>
+      <Head>
+        <title>{`Cotador Virtual ${props.store.nomeOperadora}`}</title>
+      </Head>
       <Content>
         <GridContent>
           <Arrow src='/assets/img/seta.svg' alt='seta' />

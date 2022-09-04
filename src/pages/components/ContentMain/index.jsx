@@ -3,12 +3,15 @@ import { MainContent } from './styles'
 import { connect } from 'react-redux'
 import Header from '../Header'
 import Footer from '../Footer'
+import Loading from '../Loading'
 
 const ContentMain = props => {
   return (
     <React.Fragment>
       <Header />
-      <MainContent />
+      <MainContent>
+        <Loading />
+      </MainContent>
       <Footer />
     </React.Fragment>
   )
