@@ -3,8 +3,18 @@ import {
   OPERATOR_NAME_CHANGED,
   ADS_CHANGED,
   NAME_CHANGED,
-  STEP_CHANGED
+  STEP_CHANGED,
+  TELL_CHANGED,
+  MESSAGE_TELL_CHANGED,
+  ERROR_CHANGED
 } from '../types'
+
+export function changeError(error) {
+  return {
+    type: ERROR_CHANGED,
+    payload: error
+  }
+}
  
 export function changeIdOp(idOp) {
   return {
@@ -38,5 +48,19 @@ export function changeStep(step) {
   return {
     type: STEP_CHANGED,
     payload: step
+  }
+}
+
+export function changeTell(tell) {
+  return {
+    type: TELL_CHANGED,
+    payload: tell
+  }
+}
+
+export function changeMessageTell(message) {
+  return {
+    type: MESSAGE_TELL_CHANGED,
+    payload: message
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { changeName, changeStep } from '../../../store/actions/chatAction'
+import { changeName, changeStep, changeTell } from '../../../store/actions/chatAction'
 
 import {
   BgFooter,
@@ -15,7 +15,7 @@ import {
 
 const Footer = props => {
   const [text, setText] = useState('')
-  const { store, updateName, updateStep } = props
+  const { store, updateName, updateStep, updateTell } = props
   const step = store.step
 
   function hadleCotacao(e) {
@@ -23,11 +23,14 @@ const Footer = props => {
     if(step === 1) {
       updateName(text)
       updateStep(step +1)
-      setText('');
+      setText('')
     }
 
     if(step === 3) {
-      console.log(text)
+      if(text.length >= 11) {
+        updateTell(text)
+        setText('')
+      }
     }
   }
   
@@ -39,7 +42,10 @@ const Footer = props => {
       setText('');
     }
     if(step === 3) {
-      console.log(text)
+      if(text.length >= 11) {
+        updateTell(text)
+        setText('')
+      }
     }
   }
 
@@ -76,6 +82,10 @@ const mapDispatchToProps = dispatch => {
     },
     updateStep(step) {
       const action = changeStep(step)
+      dispatch(action)
+    },
+    updateTell(telefone) {
+      const action = changeTell(telefone)
       dispatch(action)
     },
   }

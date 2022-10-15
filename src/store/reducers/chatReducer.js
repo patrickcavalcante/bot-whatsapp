@@ -3,7 +3,10 @@ import {
   OPERATOR_NAME_CHANGED,
   ADS_CHANGED,
   NAME_CHANGED,
-  STEP_CHANGED
+  STEP_CHANGED,
+  TELL_CHANGED,
+  MESSAGE_TELL_CHANGED,
+  ERROR_CHANGED
 } from '../types'
 
 const initialState = {
@@ -11,7 +14,7 @@ const initialState = {
   idOp: 66,
   nome: '',
   telefone: '',
-  temzap: true,
+  messageTelefone: [],
   idorigem: 6,
   qPessoas: null,
   tipo: 1,
@@ -24,6 +27,7 @@ const initialState = {
   nomeOperadora: 'Plano de Saúde',
   ads: 1,
   email: '',
+  error: ''
 }
 
 export default function chatReducer (state = initialState, action) {
@@ -52,6 +56,21 @@ export default function chatReducer (state = initialState, action) {
       return {
       ...state,
       step: action.payload
+    }
+    case TELL_CHANGED: 
+      return {
+      ...state,
+      telefone: action.payload
+    }
+    case MESSAGE_TELL_CHANGED: 
+      return {
+      ...state,
+      messageTelefone: [...state.messageTelefone, action.payload]
+    }
+    case ERROR_CHANGED: 
+      return {
+      ...state,
+      error: action.payload
     }
     default: 
       return state
