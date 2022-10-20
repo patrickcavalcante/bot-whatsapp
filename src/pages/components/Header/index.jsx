@@ -11,7 +11,9 @@ import {
   Arrow,
   Title,
   Movie,
-  Tell
+  Tell,
+  ActiveStatus,
+  Status
 } from './styles'
 
 const Header = props => {
@@ -58,7 +60,11 @@ const Header = props => {
         <GridContent>
           <Arrow src='/assets/img/seta.svg' alt='seta' />
           <Logo src={logoOperadora} alt='Logo operadora' />
-          <Title>{props.store.nomeOperadora}</Title>
+          <div>
+            <Title>{props.store.nomeOperadora}</Title>
+            <ActiveStatus>Online</ActiveStatus>
+            <Status />
+          </div>
         </GridContent>
         <GridContent>
           <Movie src='/assets/img/video.svg' alt="video" />

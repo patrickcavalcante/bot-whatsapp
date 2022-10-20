@@ -10,7 +10,8 @@ import { BotMessage, BotMessageBalloon, ClientMessage, ClientMessageBalloon, Tex
 
 const StepFour = props => {
   const [session, setSession] = useState(false)
-  const { store, updateMessageLives } = props
+  const { store, updateMessageLives, updateStep } = props
+  const step = store.step
   const lives = store.qPessoas
   const messageLives = store.messageqPessoas
 
@@ -53,7 +54,7 @@ const StepFour = props => {
           updateMessageLives({ id: 1, text: response.data.critica })
         }
         if (response.data.status === "success") {
-          console.log('vidas cadastradas')
+          updateStep(step +1)
         }
     } catch (err) {
       updateMessageLives({ id: 1, text: err })
@@ -76,7 +77,7 @@ const StepFour = props => {
         messageLives.map(message => {
           if(message.id == 2) {
             return (
-              <ClientMessage>
+              <ClientMessage key={message.text}>
                 <ClientMessageBalloon>
                   <Text>{message.text}</Text>
                 </ClientMessageBalloon> 
@@ -86,7 +87,7 @@ const StepFour = props => {
 
           if(message.id == 1) {
             return (
-              <BotMessage>
+              <BotMessage key={message.text}>
                 <BotMessageBalloon>
                   <Text>{message.text}</Text>
                 </BotMessageBalloon>

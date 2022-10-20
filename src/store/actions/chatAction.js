@@ -8,6 +8,8 @@ import {
   MESSAGE_TELL_CHANGED,
   LIVES_CHANGED,
   MESSAGE_LIVES_CHANGED,
+  TYPE_CHANGED,
+  NAME_COMPANY,
   ERROR_CHANGED
 } from '../types'
 
@@ -78,5 +80,19 @@ export function changeMessageLives(message) {
   return {
     type: MESSAGE_LIVES_CHANGED,
     payload: message
+  }
+}
+
+export function changeType(type) {
+  return {
+    type: TYPE_CHANGED,
+    payload: type
+  }
+}
+
+export function changeNameCompany(company) {
+  return {
+    type: NAME_COMPANY,
+    payload: company
   }
 }

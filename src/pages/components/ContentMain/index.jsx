@@ -7,6 +7,8 @@ import StageOne from '../stages/stageOne'
 import StageTwo from '../stages/stageTwo'
 import StageThree from '../stages/stageThree'
 import StageFour from '../stages/stageFour'
+import StageFive from '../stages/stageFive'
+import stageFive from '../stages/stageFive'
 
 const ContentMain = props => {
   const bottomRef = useRef(null)
@@ -16,6 +18,7 @@ const ContentMain = props => {
   const [stageTwo, setStageTwo] = useState(false)
   const [stageThree, setstageThree] = useState(false)
   const [stageFour, setstageFour] = useState(false)
+  const [stageFive, setstageFive] = useState(false)
 
   useEffect(() => {
     if(step === 2) {
@@ -26,6 +29,10 @@ const ContentMain = props => {
     }
     if(step === 4) {
       setstageFour(true);
+    }
+
+    if(step === 5) {
+      setstageFive(true);
     }
   }, [step])
 
@@ -41,8 +48,9 @@ const ContentMain = props => {
         {stageTwo ? <StageTwo /> : null}
         {stageThree ? <StageThree /> : null}
         {stageFour ? <StageFour /> : null}
-        <div ref={bottomRef} />
+        {stageFive ? <StageFive /> : null}
       </MainContent>
+      <div ref={bottomRef} />
       <Footer />
     </React.Fragment>
   )
