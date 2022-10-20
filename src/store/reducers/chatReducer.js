@@ -5,7 +5,9 @@ import {
   NAME_CHANGED,
   STEP_CHANGED,
   TELL_CHANGED,
-  MESSAGE_TELL_CHANGED,
+  MESSAGE_TELL_CHANGED, 
+  LIVES_CHANGED,
+  MESSAGE_LIVES_CHANGED,
   ERROR_CHANGED
 } from '../types'
 
@@ -16,7 +18,8 @@ const initialState = {
   telefone: '',
   messageTelefone: [],
   idorigem: 6,
-  qPessoas: null,
+  qPessoas: '',
+  messageqPessoas: [],
   tipo: 1,
   idade: '',
   cooparticipacao: '',
@@ -66,6 +69,16 @@ export default function chatReducer (state = initialState, action) {
       return {
       ...state,
       messageTelefone: [...state.messageTelefone, action.payload]
+    }
+    case LIVES_CHANGED: 
+      return {
+      ...state,
+      qPessoas: action.payload
+    }
+    case MESSAGE_LIVES_CHANGED: 
+      return {
+      ...state,
+      messageqPessoas: [...state.messageqPessoas, action.payload]
     }
     case ERROR_CHANGED: 
       return {

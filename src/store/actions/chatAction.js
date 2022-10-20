@@ -6,6 +6,8 @@ import {
   STEP_CHANGED,
   TELL_CHANGED,
   MESSAGE_TELL_CHANGED,
+  LIVES_CHANGED,
+  MESSAGE_LIVES_CHANGED,
   ERROR_CHANGED
 } from '../types'
 
@@ -61,6 +63,20 @@ export function changeTell(tell) {
 export function changeMessageTell(message) {
   return {
     type: MESSAGE_TELL_CHANGED,
+    payload: message
+  }
+}
+
+export function changeLives(lives) {
+  return {
+    type: LIVES_CHANGED,
+    payload: lives
+  }
+}
+
+export function changeMessageLives(message) {
+  return {
+    type: MESSAGE_LIVES_CHANGED,
     payload: message
   }
 }

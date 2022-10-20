@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import Loading from '../Loading/index'
 import api from '../../../service/api'
 import { BotMessage, BotMessageBalloon, Text, ClientMessage, ClientMessageBalloon } from './styles'
-import { changeMessageTell } from '../../../store/actions/chatAction'
+import { changeMessageTell, changeStep } from '../../../store/actions/chatAction'
 
 const StageThree = props => {
   const [session, setSession] = useState(false);
-  const { store, updateMessageTell } = props
+  const { store, updateMessageTell, updateStep } = props
+  const step = store.step
   const telefone = store.telefone
-  const messageTelefone =store.messageTelefone
+  const messageTelefone= store.messageTelefone
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,7 +40,7 @@ const StageThree = props => {
       id_origem: store.idorigem,
       id_segmento: store.segmento,
       id_tipo: store.tipo,
-      id_produto: store.idop,
+      id_produto: store.idOp,
       id_ads: store.ads,
       nome: store.nome,
       telefones: [{ numero: phoneNumber, whatsapp: hasWhatsApp }]
@@ -48,14 +49,13 @@ const StageThree = props => {
     try {
       const response = await api.post('integracao/cadastro', data)
       if (response.data.status === 'error') {
-        //setError(response.data.critica)
         updateMessageTell({ id: 1, text: response.data.critica })
         throw new Error('response.data.critica')
       }
   
       if (response.data.status === 'success') {
         localStorage.setItem('idLead', response.data.lead.dados.id)
-        console.log('lead Cadastrada')
+        updateStep(step +1)
       }
     } catch (err) {
       return
@@ -73,7 +73,7 @@ const StageThree = props => {
         const response = await api.post('integracao/check/whatsapp', data, {timeout: 3000})
   
         if (response.data.numberExists === undefined) {
-          throw new Error ('Ops, formulário indisponível no momento')
+          return updateMessageTell({ id: 1, text: 'Ops, formulário indisponível no momento' })
         }
   
         if (response.data.numberExists === true) {
@@ -81,8 +81,7 @@ const StageThree = props => {
         }
   
         if(response.data.numberExists === false) {
-          //setError('Este telefone não possui WhatsApp. Por favor digite um número com WhatsApp')
-          return
+          return updateMessageTell({ id: 1, text: 'Este telefone não possui WhatsApp. Por favor digite um número com WhatsApp' })
         }
       }
       catch(Error) {
@@ -90,11 +89,9 @@ const StageThree = props => {
         return registerLead(phoneNumber, 0, store)
       }
     } else {
-      //setError('Numero de telefone inválido digite novamente');
+      return updateMessageTell({ id: 1, text: 'Numero de telefone inválido digite novamente' })
     }
   }
-
-  console.log(store.messageTelefone)
 
   return (
     <React.Fragment>
@@ -143,6 +140,10 @@ const mapDispatchToProps = dispatch => {
   return {
     updateMessageTell(message) {
       const action = changeMessageTell(message)
+      dispatch(action)
+    },
+    updateStep(step) {
+      const action = changeStep(step)
       dispatch(action)
     },
   }
