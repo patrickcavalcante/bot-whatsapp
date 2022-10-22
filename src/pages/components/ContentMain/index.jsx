@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { MainContent } from './styles'
+import { MainContent, Spancing } from './styles'
 import { connect } from 'react-redux'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -8,17 +8,18 @@ import StageTwo from '../stages/stageTwo'
 import StageThree from '../stages/stageThree'
 import StageFour from '../stages/stageFour'
 import StageFive from '../stages/stageFive'
-import stageFive from '../stages/stageFive'
+import StageSix from '../stages/stageSix'
 
 const ContentMain = props => {
-  const bottomRef = useRef(null)
+  const messagesEndRef = useRef(0);
+  const scroll = messagesEndRef.current.offsetTop
   const { store } = props
-
   const step = store.step
   const [stageTwo, setStageTwo] = useState(false)
   const [stageThree, setstageThree] = useState(false)
   const [stageFour, setstageFour] = useState(false)
   const [stageFive, setstageFive] = useState(false)
+  const [stageSix, setstageSix] = useState(false)
 
   useEffect(() => {
     if(step === 2) {
@@ -30,15 +31,21 @@ const ContentMain = props => {
     if(step === 4) {
       setstageFour(true);
     }
-
     if(step === 5) {
       setstageFive(true);
+    }
+    if(step === 6) {
+      setstageSix(true);
     }
   }, [step])
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
-  }, [store]);
+    console.log(messagesEndRef.current.offsetTop)
+    window.scrollTo({
+      behavior: "smooth",
+      top: messagesEndRef.current.offsetTop
+    });
+  }, [scroll])
 
   return (
     <React.Fragment>
@@ -49,8 +56,10 @@ const ContentMain = props => {
         {stageThree ? <StageThree /> : null}
         {stageFour ? <StageFour /> : null}
         {stageFive ? <StageFive /> : null}
+        {stageSix ? <StageSix /> : null}
+        <Spancing />
+        <div ref={messagesEndRef} />
       </MainContent>
-      <div ref={bottomRef} />
       <Footer />
     </React.Fragment>
   )

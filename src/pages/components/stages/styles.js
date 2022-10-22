@@ -68,6 +68,56 @@ export const BotMessageBalloon = styled.div`
   }
 `
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+` 
+
+export const ContainerCollum = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const BotMessageImage = styled.img`
+  width: 32px;
+  height: 32px;
+  border: solid 1px #e0e0e0;
+  border-radius: 30px;
+`
+
+export const Title = styled.p`
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #444;
+  margin-left: 15px;
+`
+
+export const Subtitle = styled.span`
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 400;
+  color: #444;
+  margin-left: 15px;
+  margin-top: 5px;
+`
+
+export const Divisor = styled.hr`
+  border: solid 0.5px #e0e0e0;
+  height: 1px;
+`
+
+export const Link = styled.a`
+  font-size: 10px;
+  font-weight: 300;
+  color: #444;
+`
+
+export const Separator = styled.div`
+  border-left: solid 2px #e0e0e0;
+`
+
 export const Text = styled.p`
   margin: 0px;
   font-size: 16px;

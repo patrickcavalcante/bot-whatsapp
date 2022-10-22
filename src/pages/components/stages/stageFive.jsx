@@ -17,8 +17,8 @@ import {
 
 const StepFive = props => {
   const [session, setSession] = useState(false)
-  const { store, updateType } = props
-  const type = store.tipo
+  const { store, updateType, updateStep } = props
+  const step = store.step
   const lifes = store.qPessoas
   const company = store.nome_empresa
 
@@ -38,24 +38,29 @@ const StepFive = props => {
       if (isValidSim === true) {
         if (lifes > 1) {
           updateType(2)
+          setTimeout(() => {
+            upgradeTypeLead()
+          }, '1500')
         }
       }
 
       if (isValidNot === true) {
         if (lifes === 1) {
           updateType(1)
+          setTimeout(() => {
+            upgradeTypeLead()
+          }, '1500')
         }
 
         if (lifes > 1) {
           updateType(3)
+          setTimeout(() => {
+            upgradeTypeLead()
+          }, '1500')
         }
       }
     }
   }, [company])
-
-  useEffect(() => {
-    upgradeTypeLead()
-  }, [type])
 
   async function upgradeTypeLead () {
     const idLead = localStorage.getItem('idLead')
@@ -71,7 +76,7 @@ const StepFive = props => {
         console.log(response.data.critica)
       }
       if (response.data.status === 'success') {
-        console.log('entrei aqui')
+        updateStep(step +1)
       }
     } catch (err) {
       console.error(err)

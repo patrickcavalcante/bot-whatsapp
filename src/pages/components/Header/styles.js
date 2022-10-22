@@ -19,7 +19,7 @@ export const Content = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 8vh;
-  padding:0rem 1.3em;
+  padding: 0rem 1.3em;
   background-color: #f6f6f6;
 `
 
@@ -64,7 +64,10 @@ export const Movie = styled.img`
   height: 28px;
   width: 28px;
 `
-
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 export const ActiveStatus = styled.h5`
   font-size: 16px;
   font-weight: 300;

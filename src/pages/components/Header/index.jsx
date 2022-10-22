@@ -13,7 +13,8 @@ import {
   Movie,
   Tell,
   ActiveStatus,
-  Status
+  Status,
+  Container
 } from './styles'
 
 const Header = props => {
@@ -23,6 +24,8 @@ const Header = props => {
   }
 
   const { updateIdOp, updateNameOperator, updateAds } = props
+
+  const isPlataform = typeof window !== 'undefined' ? navigator.platform : false;
 
   useEffect(() => {
     var query = location.search.slice(1);
@@ -60,15 +63,19 @@ const Header = props => {
         <GridContent>
           <Arrow src='/assets/img/seta.svg' alt='seta' />
           <Logo src={logoOperadora} alt='Logo operadora' />
-          <div>
+          <Container>
             <Title>{props.store.nomeOperadora}</Title>
             <ActiveStatus>Online</ActiveStatus>
             <Status />
-          </div>
+          </Container>
         </GridContent>
         <GridContent>
-          <Movie src='/assets/img/video.svg' alt="video" />
-          <Tell src='/assets/img/telefonema.svg' alt="telefone" />
+          {isPlataform === 'iPhone' ? <>
+             <Movie src='/assets/img/video.svg' alt="video" />
+             <Tell src='/assets/img/telefonema.svg' alt="telefone" />
+          </> : <>
+            <Movie src='/assets/img/video.svg' alt="video" />
+            <Tell src='/assets/img/telefonema.svg' alt="telefone" /></>}
         </GridContent>
       </Content>
     </BgHeader>
