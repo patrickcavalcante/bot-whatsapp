@@ -5,18 +5,30 @@ import { changeName, changeStep, changeTell, changeLives, changeNameCompany } fr
 import {
   BgFooter,
   Content,
+  ContentAndroid,
   GridContent,
+  GridContentAndroid,
   IconPlus,
   IconUpload,
   IconMicro,
   IconSend,
-  Input
+  Input,
+  InputAndroid,
+  MicrophoneContent,
+  MicrophoneIcon,
+  Smile,
+  PaperClip,
+  PhotoCam,
+  PaperClipContent,
+  PhotoCamConten
 } from './styles'
 
 const Footer = props => {
   const [text, setText] = useState('')
   const { store, updateName, updateStep, updateTell, updateLives, updateNameCompany } = props
   const step = store.step
+
+  const isPlataform = typeof window !== 'undefined' ? navigator.platform : false;
 
   function hadleCotacao(e) {
     e.preventDefault();
@@ -69,19 +81,40 @@ const Footer = props => {
 
   return (
     <BgFooter>
-      <Content>
-        <GridContent>
-          <IconPlus src='/assets/img/adicionar.svg' alt='adicionar' />
-          <form onSubmit={hadleCotacao}>
-            <Input type='text' placeholder='' value={text} onChange={(e) => setText(e.target.value)} />
-          </form>
-          <IconUpload src='/assets/img/file-upload.svg' alt='file' />
-          {text.length > 0 ? 
-            <IconSend onClick={sendMessage} src='/assets/img/send-message.svg' alt='send' /> : 
-            <IconMicro src='/assets/img/microphone.svg' alt="micro"/>
-          }
-        </GridContent>
-      </Content>
+      {isPlataform === 'iPhone' ? <>
+        <Content>
+          <GridContent>
+            <IconPlus src='/assets/img/adicionar.svg' alt='adicionar' />
+            <form onSubmit={hadleCotacao}>
+              <Input type='text' placeholder='' value={text} onChange={(e) => setText(e.target.value)} />
+            </form>
+            <IconUpload src='/assets/img/file-upload.svg' alt='file' />
+            {text.length > 0 ? 
+              <IconSend onClick={sendMessage} src='/assets/img/send-message.svg' alt='send' /> : 
+              <IconMicro src='/assets/img/microphone.svg' alt="micro"/>
+            }
+          </GridContent>
+        </Content>
+      </> : <>
+        <ContentAndroid>
+          <GridContentAndroid>
+            <Smile src='/assets/img/emoticon.svg' />
+            <form onSubmit={hadleCotacao}>
+              <InputAndroid type='text' placeholder='Mensagem' value={text} onChange={(e) => setText(e.target.value)} />
+            </form>
+            {text.length === 0 ? <>
+              <PaperClip src='/assets/img/paperclip.svg' />
+              <PhotoCam src='/assets/img/photo-camera.svg' />
+            </> : <>
+              <PaperClipContent />
+              <PhotoCamConten />
+            </>}
+            <MicrophoneContent>
+              <MicrophoneIcon src='/assets/img/microphoneAndroid.svg' />
+            </MicrophoneContent>
+          </GridContentAndroid>
+        </ContentAndroid>
+      </>}
     </BgFooter>
   )
 }

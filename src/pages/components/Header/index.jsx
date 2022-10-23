@@ -6,13 +6,20 @@ import Head from 'next/head'
 import {
   BgHeader,
   Content,
+  ContentAndroid,
   GridContent,
+  GridContentIcons,
   Logo,
   Arrow,
+  ArrowWhite,
   Title,
+  TitleWhite,
   Movie,
+  MovieWhite,
   Tell,
+  TellWhite,
   ActiveStatus,
+  ActiveStatusWhite,
   Status,
   Container
 } from './styles'
@@ -59,25 +66,77 @@ const Header = props => {
       <Head>
         <title>{`Cotador Virtual ${props.store.nomeOperadora}`}</title>
       </Head>
-      <Content>
-        <GridContent>
-          <Arrow src='/assets/img/seta.svg' alt='seta' />
-          <Logo src={logoOperadora} alt='Logo operadora' />
-          <Container>
-            <Title>{props.store.nomeOperadora}</Title>
-            <ActiveStatus>Online</ActiveStatus>
-            <Status />
-          </Container>
-        </GridContent>
-        <GridContent>
-          {isPlataform === 'iPhone' ? <>
-             <Movie src='/assets/img/video.svg' alt="video" />
-             <Tell src='/assets/img/telefonema.svg' alt="telefone" />
-          </> : <>
+      {isPlataform === 'iPhone' ? <>
+        <Content>
+          <GridContent>
+            <Arrow src='/assets/img/seta.svg' alt='seta' />
+            <Logo src={logoOperadora} alt='Logo operadora' />
+            <Container>
+              <Title>{props.store.nomeOperadora}</Title>
+              <ActiveStatus>Online</ActiveStatus>
+              <Status />
+            </Container>
+          </GridContent>
+          <GridContent>
             <Movie src='/assets/img/video.svg' alt="video" />
-            <Tell src='/assets/img/telefonema.svg' alt="telefone" /></>}
-        </GridContent>
-      </Content>
+            <Tell src='/assets/img/telefonema.svg' alt="telefone" />
+          </GridContent>
+        </Content>
+      </> : null}
+
+      {isPlataform === 'Linux armv7l' ? <>
+        <ContentAndroid>  
+          <GridContent>
+            <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
+            <Logo src={logoOperadora} alt='Logo operadora' />
+            <Container>
+              <TitleWhite>{props.store.nomeOperadora}</TitleWhite>
+              <ActiveStatusWhite>Online</ActiveStatusWhite>
+            </Container>
+          </GridContent>
+          <GridContentIcons>
+            <MovieWhite src='/assets/img/movie.svg' alt="video" />
+            <TellWhite src='/assets/img/phone.svg' alt="telefone" />
+            <Tell src="/assets/img/dots.svg" alt="" />
+          </GridContentIcons>
+        </ContentAndroid>
+      </> : null}
+
+      {isPlataform === 'Linux armv81' ? <>
+        <ContentAndroid>  
+          <GridContent>
+            <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
+            <Logo src={logoOperadora} alt='Logo operadora' />
+            <Container>
+              <TitleWhite>{props.store.nomeOperadora}</TitleWhite>
+              <ActiveStatusWhite>Online</ActiveStatusWhite>
+            </Container>
+          </GridContent>
+          <GridContentIcons>
+            <MovieWhite src='/assets/img/movie.svg' alt="video" />
+            <TellWhite src='/assets/img/phone.svg' alt="telefone" />
+            <Tell src="/assets/img/dots.svg" alt="" />
+          </GridContentIcons>
+        </ContentAndroid>
+      </> : null}
+
+      {isPlataform === 'Win32' ? <>
+        <ContentAndroid>  
+          <GridContent>
+            <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
+            <Logo src={logoOperadora} alt='Logo operadora' />
+            <Container>
+              <TitleWhite>{props.store.nomeOperadora}</TitleWhite>
+              <ActiveStatusWhite>Online</ActiveStatusWhite>
+            </Container>
+          </GridContent>
+          <GridContentIcons>
+            <MovieWhite src='/assets/img/movie.svg' alt="video" />
+            <TellWhite src='/assets/img/phone.svg' alt="telefone" />
+            <Tell src="/assets/img/dots.svg" alt="" />
+          </GridContentIcons>
+        </ContentAndroid>
+      </> : null}
     </BgHeader>
   )
 }

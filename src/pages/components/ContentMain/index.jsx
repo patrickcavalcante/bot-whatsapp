@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { MainContent, Spancing } from './styles'
+import { MainContent, MainContentAndroid, Spancing } from './styles'
 import { connect } from 'react-redux'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -21,6 +21,8 @@ const ContentMain = props => {
   const [stageFive, setstageFive] = useState(false)
   const [stageSix, setstageSix] = useState(false)
 
+  const isPlataform = typeof window !== 'undefined' ? navigator.platform : false;
+
   useEffect(() => {
     if(step === 2) {
       setStageTwo(true);
@@ -40,7 +42,6 @@ const ContentMain = props => {
   }, [step])
 
   useEffect(() => {
-    console.log(messagesEndRef.current.offsetTop)
     window.scrollTo({
       behavior: "smooth",
       top: messagesEndRef.current.offsetTop
@@ -50,16 +51,29 @@ const ContentMain = props => {
   return (
     <React.Fragment>
       <Header />
-      <MainContent>
-        <StageOne />
-        {stageTwo ? <StageTwo /> : null}
-        {stageThree ? <StageThree /> : null}
-        {stageFour ? <StageFour /> : null}
-        {stageFive ? <StageFive /> : null}
-        {stageSix ? <StageSix /> : null}
-        <Spancing />
-        <div ref={messagesEndRef} />
-      </MainContent>
+      {isPlataform === 'iPhone' ? <>
+        <MainContent>
+          <StageOne />
+          {stageTwo ? <StageTwo /> : null}
+          {stageThree ? <StageThree /> : null}
+          {stageFour ? <StageFour /> : null}
+          {stageFive ? <StageFive /> : null}
+          {stageSix ? <StageSix /> : null}
+          <Spancing />
+          <div ref={messagesEndRef} />
+        </MainContent>
+      </> : <>
+        <MainContentAndroid>
+          <StageOne />
+          {stageTwo ? <StageTwo /> : null}
+          {stageThree ? <StageThree /> : null}
+          {stageFour ? <StageFour /> : null}
+          {stageFive ? <StageFive /> : null}
+          {stageSix ? <StageSix /> : null}
+          <Spancing />
+          <div ref={messagesEndRef} />
+        </MainContentAndroid>
+      </>}
       <Footer />
     </React.Fragment>
   )
