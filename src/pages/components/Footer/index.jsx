@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { changeName, changeStep, changeTell, changeLives, changeNameCompany } from '../../../store/actions/chatAction'
+import { isAndroid , isIOS, isWindows, isMacOs } from 'react-device-detect' 
 
 import {
   BgFooter,
@@ -81,7 +82,7 @@ const Footer = props => {
 
   return (
     <BgFooter>
-      {isPlataform === 'iPhone' ? <>
+      {isIOS ? <>
         <Content>
           <GridContent>
             <IconPlus src='/assets/img/adicionar.svg' alt='adicionar' />
@@ -95,7 +96,9 @@ const Footer = props => {
             }
           </GridContent>
         </Content>
-      </> : <>
+      </> : null}
+
+      {isAndroid ? <>
         <ContentAndroid>
           <GridContentAndroid>
             <Smile src='/assets/img/emoticon.svg' />
@@ -114,7 +117,70 @@ const Footer = props => {
             </MicrophoneContent>
           </GridContentAndroid>
         </ContentAndroid>
-      </>}
+      </> : null}
+
+      {isWindows ? <>
+        <ContentAndroid>
+          <GridContentAndroid>
+            <Smile src='/assets/img/emoticon.svg' />
+            <form onSubmit={hadleCotacao}>
+              <InputAndroid type='text' placeholder='Mensagem' value={text} onChange={(e) => setText(e.target.value)} />
+            </form>
+            {text.length === 0 ? <>
+              <PaperClip src='/assets/img/paperclip.svg' />
+              <PhotoCam src='/assets/img/photo-camera.svg' />
+            </> : <>
+              <PaperClipContent />
+              <PhotoCamConten />
+            </>}
+            <MicrophoneContent>
+              <MicrophoneIcon src='/assets/img/microphoneAndroid.svg' />
+            </MicrophoneContent>
+          </GridContentAndroid>
+        </ContentAndroid>
+      </> : null}
+
+      {isMacOs ? <>
+        <ContentAndroid>
+          <GridContentAndroid>
+            <Smile src='/assets/img/emoticon.svg' />
+            <form onSubmit={hadleCotacao}>
+              <InputAndroid type='text' placeholder='Mensagem' value={text} onChange={(e) => setText(e.target.value)} />
+            </form>
+            {text.length === 0 ? <>
+              <PaperClip src='/assets/img/paperclip.svg' />
+              <PhotoCam src='/assets/img/photo-camera.svg' />
+            </> : <>
+              <PaperClipContent />
+              <PhotoCamConten />
+            </>}
+            <MicrophoneContent>
+              <MicrophoneIcon src='/assets/img/microphoneAndroid.svg' />
+            </MicrophoneContent>
+          </GridContentAndroid>
+        </ContentAndroid>
+      </> : null}
+
+      {isPlataform === 'linux' ? <>
+      <ContentAndroid>
+          <GridContentAndroid>
+            <Smile src='/assets/img/emoticon.svg' />
+            <form onSubmit={hadleCotacao}>
+              <InputAndroid type='text' placeholder='Mensagem' value={text} onChange={(e) => setText(e.target.value)} />
+            </form>
+            {text.length === 0 ? <>
+              <PaperClip src='/assets/img/paperclip.svg' />
+              <PhotoCam src='/assets/img/photo-camera.svg' />
+            </> : <>
+              <PaperClipContent />
+              <PhotoCamConten />
+            </>}
+            <MicrophoneContent>
+              <MicrophoneIcon src='/assets/img/microphoneAndroid.svg' />
+            </MicrophoneContent>
+          </GridContentAndroid>
+        </ContentAndroid>
+      </> : null}
     </BgFooter>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { changeIdOp, changeOperatorName, changeAds } from '../../../store/actions/chatAction'
+import { isAndroid , isIOS, isWindows, isMacOs } from 'react-device-detect' 
 import Head from 'next/head'
 
 import {
@@ -31,7 +32,6 @@ const Header = props => {
   }
 
   const { updateIdOp, updateNameOperator, updateAds } = props
-
   const isPlataform = typeof window !== 'undefined' ? navigator.platform : false;
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Header = props => {
       <Head>
         <title>{`Cotador Virtual ${props.store.nomeOperadora}`}</title>
       </Head>
-      {isPlataform === 'iPhone' ? <>
+      {isIOS ? <>
         <Content>
           <GridContent>
             <Arrow src='/assets/img/seta.svg' alt='seta' />
@@ -84,7 +84,7 @@ const Header = props => {
         </Content>
       </> : null}
 
-      {isPlataform === 'Linux armv7l' ? <>
+      {isAndroid ? <>
         <ContentAndroid>  
           <GridContent>
             <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
@@ -102,7 +102,7 @@ const Header = props => {
         </ContentAndroid>
       </> : null}
 
-      {isPlataform === 'Linux armv81' ? <>
+      {isWindows ? <>
         <ContentAndroid>  
           <GridContent>
             <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
@@ -120,7 +120,25 @@ const Header = props => {
         </ContentAndroid>
       </> : null}
 
-      {isPlataform === 'Win32' ? <>
+      {isMacOs ? <>
+        <ContentAndroid>  
+          <GridContent>
+            <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />
+            <Logo src={logoOperadora} alt='Logo operadora' />
+            <Container>
+              <TitleWhite>{props.store.nomeOperadora}</TitleWhite>
+              <ActiveStatusWhite>Online</ActiveStatusWhite>
+            </Container>
+          </GridContent>
+          <GridContentIcons>
+            <MovieWhite src='/assets/img/movie.svg' alt="video" />
+            <TellWhite src='/assets/img/phone.svg' alt="telefone" />
+            <Tell src="/assets/img/dots.svg" alt="" />
+          </GridContentIcons>
+        </ContentAndroid>
+      </> : null}
+
+      {isPlataform === 'linux' ? <>
         <ContentAndroid>  
           <GridContent>
             <ArrowWhite src='/assets/img/leftarrow.svg' alt='seta' />

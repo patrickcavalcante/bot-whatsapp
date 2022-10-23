@@ -51,7 +51,6 @@ const ContentMain = props => {
   return (
     <React.Fragment>
       <Header />
-      {isPlataform === 'iPhone' ? <>
         <MainContent>
           <StageOne />
           {stageTwo ? <StageTwo /> : null}
@@ -62,18 +61,6 @@ const ContentMain = props => {
           <Spancing />
           <div ref={messagesEndRef} />
         </MainContent>
-      </> : <>
-        <MainContentAndroid>
-          <StageOne />
-          {stageTwo ? <StageTwo /> : null}
-          {stageThree ? <StageThree /> : null}
-          {stageFour ? <StageFour /> : null}
-          {stageFive ? <StageFive /> : null}
-          {stageSix ? <StageSix /> : null}
-          <Spancing />
-          <div ref={messagesEndRef} />
-        </MainContentAndroid>
-      </>}
       <Footer />
     </React.Fragment>
   )

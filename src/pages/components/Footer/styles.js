@@ -21,7 +21,7 @@ export const GridContent = styled.div`
   flex-direction: row;
   align-items: center;
   height: 8vh;
-  padding:0rem 0em;
+  padding:0rem 1.3em;
   background-color: #f6f6f6;
 `
 

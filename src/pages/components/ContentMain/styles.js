@@ -6,30 +6,6 @@ export const MainContent = styled.div`
   align-items: center;
   background: #efe7dd url('/assets/img/bg.jpg') repeat;
   z-index: 0;
-  min-height: 85vh;
-  padding: 0rem 0rem 6rem 0rem;
-  min-width: 400px;
-  margin-top: 4rem;
-
-  @media only screen and (min-width: 700px) {
-    display: flex;
-    align-items: center;
-    background: #efe7dd url('/assets/img/bg.jpg') repeat;
-    z-index: 0;
-    min-height: 86vh;
-    padding: 0rem 0rem 6.5rem 0rem;
-    width: 450px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-`
-
-export const MainContentAndroid = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #efe7dd url('/assets/img/bg.jpg') repeat;
-  z-index: 0;
   min-height: 92vh;
   padding: 0rem 0rem 6rem 0rem;
   min-width: 400px;
@@ -40,14 +16,13 @@ export const MainContentAndroid = styled.div`
     align-items: center;
     background: #efe7dd url('/assets/img/bg.jpg') repeat;
     z-index: 0;
-    min-height: 92vh;
-    padding: 0rem 0rem 6.5rem 0rem;
+    min-height: 94vh;
+    padding: 1em 0rem 6.5rem 0rem;
     width: 450px;
     margin-left: auto;
     margin-right: auto;
   }
 `
-
 export const Spancing = styled.div`
   padding: 20px 0px;
 `
